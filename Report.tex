@@ -3,8 +3,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{url} 
+\usepackage{float}
 \usepackage{graphicx} 
 \usepackage{hyperref} 
+\usepackage{mathtools}
 
 \begin{document}
 \title{%
@@ -57,7 +59,7 @@ The system assigned to the group is composed of:
 \item     PoliArd electronic board, which allows to perform real-time control logics 
 \end{itemize}
 
-Originally the system included also another couple of coils in series placed under the moving block. They could be useful to better control the system, but unfortunately this additional part is no longer available. \\
+Originally the system included also another couple of coils in series placed under the moving block. They could be useful to better control the system, but unfortunately this additional part is no longer available.
 
 \begin{figure}
 \begin{center}
@@ -75,8 +77,7 @@ Originally the system included also another couple of coils in series placed und
 
 \section{Electrical Model}
 The following section explains the model chosen for the electrical part of the system, and the techniques used to identify its parameters.
-
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.5]{Images/2_schema_elettrico}
 \end{center}
@@ -87,22 +88,69 @@ The following section explains the model chosen for the electrical part of the s
 \subsection{System Equation}
 The electrical part of the system is described by:
 \begin{equation}
-V = R \cdot i(t) + \frac{d(L(i(t),x) \cdot i(t)}{dt}
+V = R \cdot i(t) + \frac{d \phi}{dt}
 \end{equation}
 
+\begin{itemize}
+\item[--] V is the voltage, expressed in $V$
+\item[--] R is the resistance, expressed in $\Omega$
+\item[--] i(t) is the current, expressed in $A$
+\item[--] $\phi$ is the magnetic flux
+\end{itemize}
 
+$\phi$ is expressed as: 
+\begin{equation}
+\phi = L(i,x) \cdot i
+\end{equation}
 
+The electrical dynamics equation becomes:
+\begin{equation}
+\label{eq:elgen}
+v(t) = R \cdot i + d \frac{L(i(t),x) \cdot i(t)}{dt}
+\end{equation}
+
+Parameters $R$ and $L(i,x)$ have to be estimated. Equation \ref{eq:elgen} can be developed as:
+
+\begin{eqnarray*}
+v &=& R \cdot i + L \cdot  \dot{i} + \frac{d L(i,x)}{dt} \cdot  i \\
+&=& R \cdot i + L \cdot \dot{i} + \frac{\partial L}{\partial i} \cdot \frac{\partial i}{\partial t} \cdot i + \frac{\partial L}{\partial x} \cdot \frac{\partial x}{\partial t} \cdot  i \\
+&=& R \cdot  i + ( L + \frac{\partial L}{\partial i} \cdot i ) \cdot \dot{i} + \frac{\partial L}{\partial x} \cdot  \dot{x} \cdot  i 
+\end{eqnarray*}
+Renaming $( L + \frac{\partial L}{\partial i} \cdot i )$ as $L_{d}$,
+\begin{equation}
+v = R \cdot i + L_{d} \cdot \dot{i} + \frac{\partial L}{\partial x} \cdot  \dot{x} \cdot i
+\end{equation}
+
+Dependencies on time have been omitted for clarity.
 
 \subsection{Parameter Identification}
- Nulla et eros odio. Aliquam at mi interdum, bibendum ipsum id, tempus erat. Quisque viverra neque ligula, eu pharetra enim dictum vel. Aliquam mattis pharetra libero ut consequat. Donec porttitor massa dolor, sit amet molestie metus ultrices at. Ut mollis tortor ac lectus luctus vulputate. Pellentesque pretium nec odio non tempus. Quisque dolor metus, mattis et tempor vitae, vulputate nec odio. Proin placerat felis justo, in placerat lorem molestie in. Vivamus efficitur lacus a lacus tempor pharetra.
-\\
-Pellentesque eu nibh sit amet nisl hendrerit mollis. Maecenas eget tortor vestibulum, dictum ipsum at, consectetur mauris. Aliquam sodales viverra erat, ut molestie elit efficitur sit amet. Proin nec venenatis felis, a laoreet quam. Mauris aliquet ligula in odio auctor pulvinar. Fusce porta elit ut mi ultrices imperdiet. Maecenas ac mauris sit amet erat posuere sodales ac vel nunc. Morbi porta finibus pretium. In hac habitasse platea dictumst. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Mechanical model}
 
 Pellentesque volutpat, orci eu feugiat molestie, lacus ex sodales dui, nec rhoncus diam purus at massa. Maecenas ac odio eget justo venenatis rhoncus vel in orci. Etiam ac eros rutrum, aliquam ante nec, pharetra felis. Ut maximus elementum felis sed aliquet. Phasellus sit amet mollis tortor. Nunc et pharetra diam, eleifend efficitur urna. Sed gravida lacus et urna consequat, vulputate efficitur mi tincidunt. Integer convallis sapien dui, vitae varius tellus euismod sed. Vivamus odio diam, porttitor id laoreet at, dictum vitae leo. Suspendisse dignissim sit amet lacus ut malesuada. Quisque lobortis suscipit nisi a malesuada. Sed et libero vel dolor pretium tincidunt vitae a felis. Maecenas fermentum vehicula magna, in tristique leo scelerisque eu. Suspendisse nec blandit nunc. Suspendisse potenti. Sed posuere commodo porta. 
-
 
 
 
