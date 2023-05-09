@@ -1,0 +1,11 @@
+Inserire tutte le immagini da mettere nel paper nella cartella Images, 
+non creare sottocartelle che poi è un casino.
+
+Dare nomi facilmente riconoscibili alle immagini, separare parole usando solo _ e niente
+altro che poi è un casino.
+
+Numerare prima con il numero di paragrafo a cui si riferisce, poi il nome della immagine
+
+IMPORTANTE:
+
+Immagini con sfondo bianco, grafici di MATLAB e SIMULINK tutti con LEGENDA, TITOLO, ASSI
