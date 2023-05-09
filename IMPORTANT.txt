@@ -9,3 +9,5 @@ Numerare prima con il numero di paragrafo a cui si riferisce, poi il nome della 
 IMPORTANTE:
 
 Immagini con sfondo bianco, grafici di MATLAB e SIMULINK tutti con LEGENDA, TITOLO, ASSI
+
+MODIFICA DI WAS
